@@ -1,15 +1,15 @@
 version: 0.2
-
 phases:
   install:
     runtime-versions:
-      docker: 18
-      java: corretto8
+      docker: 20
+      java: corretto17
   pre_build:
     commands:
-      - echo Logging in to Amazon ECR...
-      - $(aws ecr get-login --no-include-email --region $AWS_REGION)
-      - IMAGE_URI=${REPOSITORY_URI}:${TAG}
+    - echo Logging in to Amazon ECR...
+    - aws --version
+    - $(aws ecr get-login --no-include-email --region $AWS_REGION)
+    - IMAGE_URI=${REPOSITORY_URI}:${TAG}
   build:
     commands:
     - echo Build started on `date`
